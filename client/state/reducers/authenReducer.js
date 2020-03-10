@@ -9,7 +9,7 @@
  * ************************************
  */
 
-import * as types from '../constants/actionTypes';
+// import * as types from '../constants/actionTypes';
 
 const initialState = {
 //   totalMarkets: 0,
@@ -21,8 +21,6 @@ const initialState = {
 
 const authenReducer = (state = initialState, action) => {
   switch (action.type) {
-
-
     default:
       return state;
   }

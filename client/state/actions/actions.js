@@ -19,9 +19,6 @@ export const populateItems = (itemsArray) => ({
 });
 
 
-
-
-
 export const addCard = (marketId) => ({
   type: types.ADD_CARD,
   payload: marketId,

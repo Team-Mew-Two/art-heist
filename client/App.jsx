@@ -16,11 +16,11 @@ import CheckoutContainer from './containers/CheckoutContainer.jsx';
 import CartContainer from './containers/CartContainer.jsx';
 
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   // create functions that will dispatch action creators
   populateItems: (itemsArray) => dispatch(actions.populateItems(itemsArray)),
 });
@@ -31,7 +31,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-
     // dummy data to update the store for testing
     const data = [{
       objectID: 3878,

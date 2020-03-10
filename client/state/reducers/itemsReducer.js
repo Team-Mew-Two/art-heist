@@ -26,7 +26,7 @@ const itemsReducer = (state = initialState, action) => {
     case types.POPULATE_ITEMS: {
       const itemsList = state.itemsList.slice();
 
-      console.log("action payload: ", action.payload);
+      console.log('action payload: ', action.payload);
       for (let i = 0; i < action.payload.length; i += 1) {
         itemsList.push(action.payload[i]);
       }
