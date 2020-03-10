@@ -21,16 +21,12 @@ class App extends Component {
       return (
         <section className='app-container'>
           <Router>
-            <nav>
+            <nav className='navbar'>
               <Link className='log-in-button' to='/login'>Log In</Link>
             </nav>
-            <h1>Hello Jason!!!!</h1>
               <Switch>
                 <Route path="/login">
                   <LoginContainer />
-                </Route>
-                <Route path="/home">
-                  <HomeContainer />
                 </Route>
                 <Route path="/items">
                   <ItemsContainer />
@@ -40,6 +36,9 @@ class App extends Component {
                 </Route>
                 <Route path="/checkout">
                   <CheckoutContainer />
+                </Route>
+                <Route path="/">
+                  <HomeContainer />
                 </Route>
               </Switch>
           </Router>
