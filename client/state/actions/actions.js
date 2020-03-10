@@ -12,6 +12,16 @@
 // import actionType constants
 import * as types from '../constants/actionTypes';
 
+
+export const populateItems = (itemsArray) => ({
+  type: types.POPULATE_ITEMS,
+  payload: itemsArray,
+});
+
+
+
+
+
 export const addCard = (marketId) => ({
   type: types.ADD_CARD,
   payload: marketId,
