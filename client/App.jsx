@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import styles from './style/style.scss';
 
@@ -19,9 +19,12 @@ class App extends Component {
 
     render() {
       return (
-        <section>
-          <h1>Hello Jason!!!!</h1>
-            <Router>
+        <section className='app-container'>
+          <Router>
+            <nav>
+              <Link className='log-in-button' to='/login'>Log In</Link>
+            </nav>
+            <h1>Hello Jason!!!!</h1>
               <Switch>
                 <Route path="/login">
                   <LoginContainer />
@@ -39,7 +42,7 @@ class App extends Component {
                   <CheckoutContainer />
                 </Route>
               </Switch>
-            </Router>
+          </Router>
         </section>
       )
     }
