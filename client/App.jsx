@@ -23,19 +23,19 @@ class App extends Component {
           <h1>Hello Jason!!!!</h1>
             <Router>
               <Switch>
-                <Route path="/Login">
+                <Route path="/login">
                   <LoginContainer />
                 </Route>
-                <Route path="/Home">
+                <Route path="/home">
                   <HomeContainer />
                 </Route>
-                <Route path="/Items">
+                <Route path="/items">
                   <ItemsContainer />
                 </Route>
-                <Route path="/Cart">
+                <Route path="/cart">
                   <CartContainer />
                 </Route>
-                <Route path="/Checkout">
+                <Route path="/checkout">
                   <CheckoutContainer />
                 </Route>
               </Switch>
