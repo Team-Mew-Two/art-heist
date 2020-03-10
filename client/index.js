@@ -1,9 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './containers/App.jsx';
 
-// uncomment so that webpack can bundle styles
-import styles from './style/style.scss';
+import App from './containers/App.jsx';
 
 render(
   <App />,

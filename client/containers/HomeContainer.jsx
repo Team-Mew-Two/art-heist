@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-class App extends Component {
+export default class HomeContainer extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -10,10 +11,8 @@ class App extends Component {
     render() {
       return (
         <div>
-          <h1>Hello Jason!!!!</h1>
+
         </div>
       )
     }
 }
-
-export default App;
