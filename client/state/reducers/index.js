@@ -22,7 +22,7 @@ const reducers = combineReducers({
   // if we had other reducers, they would go here
   items: itemsReducer,
   rating: ratingReducer,
-  authen: authenReducer,
+  user: authenReducer,
 });
 
 // make the combined reducers available for import
