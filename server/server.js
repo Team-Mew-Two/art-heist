@@ -6,6 +6,7 @@ const app = express();
 const PORT = 3000;
 
 const apiRouter = require('./routes/apiRouter');
+const userRouter = require('./routes/userRouter');
 
 /**
  * handle parsing request body
@@ -20,7 +21,10 @@ app.use(express.urlencoded({ extended: true }));
  * handle requests for static files -- make sure you know what this is doing
 app.use('/assets', express.static(path.resolve(__dirname, '../client/assets')));
 */
+
+// handle routes 
 app.use('/api', apiRouter);
+app.use('/user', userRouter);
 
 // statically serve everything in the build folder on the route '/build'
 // if (process.env.NODE_ENV !== 'development') {
