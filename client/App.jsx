@@ -31,19 +31,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // dummy data to update the store for testing
-    const data = [{
-      objectID: 3878,
-      isHighlight: false,
-      accessionNumber: 1970.196,
-      accessionYear: 1970,
-      isPublicDomain: true,
-      primaryImage: 'https://images.metmuseum.org/CRDImages/ad/original/197977.jpg',
-      primaryImageSmall: 'https://images.metmuseum.org/CRDImages/ad/web-large/197977.jpg',
-    }];
-
-    // invoke populate item function to update global store on initial render
-    this.props.populateItems(data);
+    fetch('/api/getItems')
+      .then((res) => res.json())
+      .then((data) => {
+        // invoke populate item function to update global store on initial render
+        this.props.populateItems(data);
+      })
+      .catch((error) => {
+        new Error('Error in fetching Items', error)
+      })
   }
 
 
