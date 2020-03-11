@@ -13,12 +13,14 @@ const pool = new Pool({
       password VARCHAR(150)
   );`);
 
-//   pool.query(`CREATE TABLE IF NOT EXISTS Items(
-//     userID INTEGER SERIAL PRIMARY KEY NOT NULL, 
-//     name VARCHAR(255) NOT NULL, 
-//     email VARCHAR(255),
-//     password VARCHAR(60)
-// );`);
+  pool.query(`CREATE TABLE IF NOT EXISTS Items(
+    objectID INTEGER NOT NULL, 
+    primaryImage VARCHAR NOT NULL,
+    title VARCHAR(255) NOT NULL, 
+    artist VARCHAR(255) NOT NULL,
+    date VARCHAR NOT NULL,
+    price VARCHAR
+);`);
 
 module.exports = { 
     query: function(query, params, func){
