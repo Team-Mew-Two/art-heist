@@ -60,4 +60,19 @@ apiController.insertArt = (req, res, next) => {
   
 };
 
+apiController.getItems = (req, res, next) => {
+  const query = "SELECT * FROM items";
+  
+  db.query(query, [])
+  .then((response) => {
+    console.log("Data in items: ", response.rows);
+    res.locals.items = response.rows;
+    next();
+  })
+  .catch((err) => {
+    console.log("Error in get items: ", err);
+    next(err);
+  })
+}
+
 module.exports = apiController;
