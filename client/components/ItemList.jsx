@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Masonry from 'react-masonry-css'
 
 import ItemThumb from './ItemThumb.jsx';
 
@@ -14,7 +15,17 @@ const mapStateToProps = state => ({
 class ItemList extends Component {
   constructor(props) {
     super(props);
+    this.handleOnAlways = this.handleOnAlways.bind(this);
+    this.handleDone = this.handleDone.bind(this);
   }
+
+  handleOnAlways(instance){
+      console.log('All Loaded');
+  };
+
+  handleDone(instance){
+    console.log('handle done')
+  };
 
   render() {
 
@@ -31,10 +42,22 @@ class ItemList extends Component {
       );
     }
 
+    const breakpointColumnsObj = {
+      default: 5,
+      1100: 4,
+      700: 3,
+      500: 2
+    };
+
     return (
       <section className="item-list">
         <h3>Item List</h3>
-        { builtThumbs }
+        <Masonry
+          breakpointCols={ breakpointColumnsObj }
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column">
+          { builtThumbs }
+        </Masonry>
       </section>
     );
   }
