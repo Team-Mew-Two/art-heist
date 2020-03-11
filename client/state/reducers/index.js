@@ -12,13 +12,17 @@
 import { combineReducers } from 'redux';
 
 // import all reducers here
-import marketsReducer from './marketsReducer';
+import itemsReducer from './itemsReducer';
+import ratingReducer from './ratingReducer';
+import authenReducer from './authenReducer';
 
 
 // combine reducers
 const reducers = combineReducers({
   // if we had other reducers, they would go here
-  markets: marketsReducer,
+  items: itemsReducer,
+  rating: ratingReducer,
+  authen: authenReducer,
 });
 
 // make the combined reducers available for import
