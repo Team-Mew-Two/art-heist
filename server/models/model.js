@@ -14,7 +14,7 @@ const pool = new Pool({
   );`);
 
   pool.query(`CREATE TABLE IF NOT EXISTS Items(
-    objectID INTEGER NOT NULL, 
+    objectID INTEGER PRIMARY KEY NOT NULL, 
     primaryImage VARCHAR NOT NULL,
     title VARCHAR(255) NOT NULL, 
     artist VARCHAR(255) NOT NULL,

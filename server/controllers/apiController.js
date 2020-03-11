@@ -42,16 +42,18 @@ apiController.insertArt = (req, res, next) => {
   })
 
   console.log(artWithPrice);
+
   artWithPrice.forEach(art => {
     const {objectID, primaryImage, title, artistDisplayName, objectDate, price} = art;
     const valuesArr = [objectID, primaryImage, title, artistDisplayName, objectDate, price];
-    const queryString = 'INSERT INTO items (objectID, primaryImage, title, artist, date, price) VALUES ($1)'
+    const queryString = 'INSERT INTO items (objectID, primaryImage, title, artist, date, price) VALUES ($1, $2, $3, $4, $5, $6)'
     db.query(queryString, valuesArr, (err, response) => {
       if (err) return next({
         log: 'express error handler caught error in insertArt middleware',
         status: 400,
         message: { err },
       })
+      // console.log(response);
       return next();
     })
   })
