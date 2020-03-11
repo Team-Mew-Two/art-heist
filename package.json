@@ -18,7 +18,7 @@
   "author": "Matt Peters <matthew.george.peters@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "es6-promise": "^4.2.8",
+    "bcryptjs": "^2.4.3",
     "express": "^4.12.3",
     "http-parser-js": "^0.5.2",
     "pg": "^7.18.2",
