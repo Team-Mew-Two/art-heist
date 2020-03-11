@@ -32,7 +32,29 @@ userController.createUser = (req, res, next) => {
 };
 
 userController.verifyUser = (req, res, next) => {
+  const { email, password } = req.body;
+  db.query('SELECT * FROM Users WHERE email = $1', [email], (error, user) => {
+    if (error) {
+      return next(error);
+    }
 
+     // check to see if the user email exists in database
+  if (!user.rows[0]) {
+    res.locals.user = {};
+    return next();
+  }
+
+  res.locals.user = user.rows[0];
+  bcrypt.compare(password, user.rows[0].password, (err, response) => {
+    if (err) {
+      return next(err);
+    } else if (!response) {
+      res.send('login information incorrect');
+    }
+
+    return next();
+  })
+  })
 };
 
 module.exports = userController;
