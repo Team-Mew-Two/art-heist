@@ -7,7 +7,7 @@ const pool = new Pool({
   });
 
   pool.query(`CREATE TABLE IF NOT EXISTS Users(
-      userID INTEGER SERIAL PRIMARY KEY NOT NULL, 
+      userID SERIAL PRIMARY KEY NOT NULL, 
       name VARCHAR(255) NOT NULL, 
       email VARCHAR(255),
       password VARCHAR(150)
@@ -17,7 +17,7 @@ const pool = new Pool({
     objectID INTEGER PRIMARY KEY NOT NULL, 
     primaryImage VARCHAR NOT NULL,
     title VARCHAR(255) NOT NULL, 
-    artist VARCHAR(255) NOT NULL,
+    artist VARCHAR(255),
     date VARCHAR NOT NULL,
     price VARCHAR
 );`);
