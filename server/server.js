@@ -5,18 +5,22 @@ const app = express();
 
 const PORT = 3000;
 
+const apiRouter = require('./routes/apiRouter');
+
 /**
  * handle parsing request body
  */
 app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
 
 /**
  * * 
  * handle requests for static files -- make sure you know what this is doing
 app.use('/assets', express.static(path.resolve(__dirname, '../client/assets')));
 */
-
-// app.use('/api', apiRouter);
+app.use('/api', apiRouter);
 
 // statically serve everything in the build folder on the route '/build'
 // if (process.env.NODE_ENV !== 'development') {
@@ -32,6 +36,7 @@ app.use('/build', express.static(path.resolve(__dirname, '../build')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
+
 
 app.use((req, res) => res.sendStatus(404)); // Catch All Error
 
