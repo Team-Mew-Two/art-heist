@@ -1,5 +1,6 @@
-// process.binding('http_parser').HTTPParser = require('http-parser-js').HTTPParser;
 const axios = require('axios');
+const db = require('../models/model');
+
 const apiController = {};
 
 // list of objectID's from the MET API that consist of featured paintings at the MET with available photos
@@ -12,16 +13,48 @@ apiController.getArt = (req, res, next) => {
       'Content-Type': 'application/json',
     },
   })))
-    .then(res => {
+    .then(response => {
       const artInfo = [];
-      res.forEach(art => {
+      response.forEach(art => {
         artInfo.push(art.data);
       });
-      console.log(artInfo);
+      // console.log(artInfo);
+      res.locals.artInfo = artInfo;
+      return next();
     })
     .catch(function(error) {
       console.log(error)
     });
+};
+
+// function to generate a random price from 5 million to 70 million for each piece of artwork
+const generateArtPrice = (min, max) => { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+
+// controller to insert art information into database
+apiController.insertArt = (req, res, next) => {
+  const artWithPrice = res.locals.artInfo;
+  // iterate through pieces of art and add a price to each using the helper function above
+  artWithPrice.forEach(el => {
+    el.price = generateArtPrice(5000000, 70000000);
+  })
+
+  console.log(artWithPrice);
+  artWithPrice.forEach(art => {
+    const {objectID, primaryImage, title, artistDisplayName, objectDate, price} = art;
+    const valuesArr = [objectID, primaryImage, title, artistDisplayName, objectDate, price];
+    const queryString = 'INSERT INTO items (objectID, primaryImage, title, artist, date, price) VALUES ($1)'
+    db.query(queryString, valuesArr, (err, response) => {
+      if (err) return next({
+        log: 'express error handler caught error in insertArt middleware',
+        status: 400,
+        message: { err },
+      })
+      return next();
+    })
+  })
   
 };
 

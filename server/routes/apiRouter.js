@@ -3,7 +3,7 @@ const router = express.Router();
 const apiController = require('../controllers/apiController.js');
 
 // route and middleware for getting art
-router.get('/getArt', apiController.getArt, (req, res) => {
+router.get('/getArt', apiController.getArt, apiController.insertArt, (req, res) => {
   res.status(200);
 })
 
