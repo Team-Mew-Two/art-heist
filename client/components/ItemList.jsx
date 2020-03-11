@@ -9,11 +9,11 @@ const mapStateToProps = state => ({
   items: state.items.itemsList,
 });
 
+// fx to update current selection state and to route to Items Detail Page (ItemsContainer)
+
 class ItemList extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    // };
   }
 
   render() {
@@ -27,7 +27,8 @@ class ItemList extends Component {
           primaryImage={ this.props.items[i].primaryimage }
           imageNumber={ `${i}` }
           title={ this.props.items[i].title }
-        />);
+        />
+      );
     }
 
     return (

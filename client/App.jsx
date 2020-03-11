@@ -10,7 +10,7 @@ import * as actions from './state/actions/actions';
 import styles from './style/style.scss';
 
 import LoginContainer from './containers/LoginContainer.jsx';
-import ItemsContainer from './containers/ItemsContainer.jsx';
+import ItemContainer from './containers/ItemContainer.jsx';
 import HomeContainer from './containers/HomeContainer.jsx';
 import CheckoutContainer from './containers/CheckoutContainer.jsx';
 import CartContainer from './containers/CartContainer.jsx';
@@ -55,7 +55,7 @@ class App extends Component {
               <LoginContainer />
             </Route>
             <Route path="/items">
-              <ItemsContainer />
+              <ItemContainer />
             </Route>
             <Route path="/cart">
               <CartContainer />
