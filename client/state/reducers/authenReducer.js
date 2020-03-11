@@ -9,20 +9,37 @@
  * ************************************
  */
 
-// import * as types from '../constants/actionTypes';
+import * as types from '../constants/actionTypes';
 
 const initialState = {
-//   totalMarkets: 0,
-//   totalCards: 0,
-//   marketList: [],
-//   lastMarketId: 1000,
-//   newLocation: '',
+  currentUser: null,
+  isLogged: false,
 };
 
 const authenReducer = (state = initialState, action) => {
   switch (action.type) {
-    default:
-      return state;
+    case types.SIGN_IN:
+      if (action.payload === null) {
+        return state;
+      }
+      return {
+        ...state,
+        currentUser: action.payload,
+        isLogged: true,
+      };
+    case types.REGISTER:
+      return {
+        ...state,
+        currentUser: action.payload,
+        isLogged: true,
+      };
+    case types.LOGOUT:
+      return {
+        ...state,
+        currentUser: null,
+        isLogged: false,
+      };
+    default: return state;
   }
 };
 
