@@ -13,6 +13,8 @@ import { connect } from 'react-redux';
 // import actions from action creators file
 import * as actions from './state/actions/actions';
 
+import styles from './style/style.scss'
+
 import LoginContainer from './containers/LoginContainer.jsx';
 import ItemContainer from './containers/ItemContainer.jsx';
 import HomeContainer from './containers/HomeContainer.jsx';
@@ -46,12 +48,12 @@ const mapDispatchToProps = (dispatch) => ({
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
-function PrivateRoute({ children, ...rest }) {
+function PrivateRoute(props, {children, ...rest }) {
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        fakeAuth2.isAuthenticated ? (
+        props.authObj.isAuthenticated ? (
           children
         ) : (
           <Redirect
@@ -132,7 +134,7 @@ class App extends Component {
             <Route path="/items">
               <ItemContainer />
             </Route>
-            <PrivateRoute path="/protected">
+            <PrivateRoute path="/protected" authObj={ fakeAuth }>
               <CartContainer />
             </PrivateRoute>
             <Route path="/checkout">
