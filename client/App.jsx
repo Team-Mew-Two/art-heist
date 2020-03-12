@@ -13,8 +13,6 @@ import { connect } from 'react-redux';
 // import actions from action creators file
 import * as actions from './state/actions/actions';
 
-import styles from './style/style.scss';
-
 import LoginContainer from './containers/LoginContainer.jsx';
 import ItemContainer from './containers/ItemContainer.jsx';
 import HomeContainer from './containers/HomeContainer.jsx';
@@ -45,25 +43,6 @@ const mapDispatchToProps = (dispatch) => ({
       setTimeout(cb, 100);
     }
   };
-
-function AuthButton() {
-  let history = useHistory();
-
-  return fakeAuth.isAuthenticated ? (
-    <p>
-      Welcome!{" "}
-      <button
-        onClick={() => {
-          fakeAuth.signout(() => history.push("/"));
-        }}
-      >
-        Sign out
-      </button>
-    </p>
-  ) : (
-    <p>You are not logged in.</p>
-  );
-}
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
