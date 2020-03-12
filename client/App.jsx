@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router, Switch, Route, Link,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation
 } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 // import actions from action creators file
 import * as actions from './state/actions/actions';
 
-import styles from './style/style.scss';
+import styles from './style/style.scss'
 
 import LoginContainer from './containers/LoginContainer.jsx';
 import ItemContainer from './containers/ItemContainer.jsx';
@@ -15,6 +21,8 @@ import HomeContainer from './containers/HomeContainer.jsx';
 import CheckoutContainer from './containers/CheckoutContainer.jsx';
 import CartContainer from './containers/CartContainer.jsx';
 import Register from './components/Register.jsx';
+
+import NavBarButtons from './components/NavBarButtons.jsx';
 
 
 const mapStateToProps = (state) => ({
@@ -25,6 +33,60 @@ const mapDispatchToProps = (dispatch) => ({
   // create functions that will dispatch action creators
   populateItems: (itemsArray) => dispatch(actions.populateItems(itemsArray)),
 });
+
+// fake auth for RRouter protected  Routes
+  const fakeAuth2 = { //
+    isAuthenticated: true,
+    authenticate(cb) {
+      fakeAuth.isAuthenticated = true;
+      setTimeout(cb, 100); // fake async
+    },
+    signout(cb) {
+      fakeAuth.isAuthenticated = false;
+      setTimeout(cb, 100);
+    }
+  };
+
+// A wrapper for <Route> that redirects to the login
+// screen if you're not yet authenticated.
+function PrivateRoute(props, {children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        props.authObj.isAuthenticated ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
+function LoginPage() {
+  let history = useHistory();
+  let location = useLocation();
+
+  let { from } = location.state || { from: { pathname: "/" } };
+  let login = () => {
+    fakeAuth.authenticate(() => {
+      history.replace(from);
+    });
+  };
+
+  return (
+    <div>
+      <p>You must log in to view the page at {from.pathname}</p>
+      <button onClick={login}>Log in</button>
+    </div>
+  );
+}
 
 class App extends Component {
   constructor(props) {
@@ -43,14 +105,28 @@ class App extends Component {
       })
   }
 
-
   render() {
+
+  const fakeAuth = {
+    isAuthenticated: true,
+    authenticate(cb) {
+      fakeAuth.isAuthenticated = true;
+      setTimeout(cb, 100); // fake async
+    },
+    signout(cb) {
+      fakeAuth.isAuthenticated = false;
+      setTimeout(cb, 100);
+    }
+  };
+
     return (
       <section className="app-container">
         <Router>
           <nav className="navbar">
-            <h2>Art Heist</h2>
-            <Link className="log-in-button" to="/login">Log In</Link>
+            <Link to="/protected">Protected</Link>
+            <NavBarButtons
+              authObj={ fakeAuth }
+            />
           </nav>
           <Switch>
             <Route path="/login">
@@ -62,9 +138,9 @@ class App extends Component {
             <Route path="/items">
               <ItemContainer />
             </Route>
-            <Route path="/cart">
+            <PrivateRoute path="/protected" authObj={ fakeAuth }>
               <CartContainer />
-            </Route>
+            </PrivateRoute>
             <Route path="/checkout">
               <CheckoutContainer />
             </Route>
