@@ -6,7 +6,14 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
   // provide pertinent state here
+  userId: state.user.userId,
   currentItem: state.items.currentItem,
+});
+
+const mapDispatchToProps = dispatch => ({
+  // create functions that will dispatch action creators
+  addItemToCart: (userId, itemId) => 
+  dispatch(actions.addItemToCart(userId, itemId)),
 });
 
 export function ItemContainer (props) {
@@ -22,11 +29,11 @@ export function ItemContainer (props) {
           <h4> Date: { props.currentItem.date } </h4>
           <h4> Price: ${ props.currentItem.price } </h4>
           <Link to='/cart'>
-            <button>Add to Cart</button>
+            <button onClick={ () => props.addItemToCart(props.userId, props.currentItem.objectid) }>Add to Cart</button>
           </Link>
         </div>
       </div>
     )
 }
 
-export default connect(mapStateToProps)(ItemContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemContainer);
