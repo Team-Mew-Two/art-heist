@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+// import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../state/actions/actions';
 
@@ -41,12 +42,15 @@ class Login extends Component {
     render() {
       return (
       <section className="login-container__login">
-        <h3>Log-In</h3>
-          <input id="email" name="email" type="text" placeholder="email"/>
-          <input id="username" name="username" type="text" placeholder="username" />
-          <input id="password" name="password" type="text" placeholder="password"/>
-          <button onClick={this.loginHandleClick}>Log In</button>
-        <Link className='submission' to='/'>Log In</Link>
+        <form method="POST" action="/user/login">
+          <input name="email" type="text" placeholder="email" />
+          <input name="password" type="password" placeholder="password"/>
+          <Link className='submission' to='/'>Log In</Link>
+        </form>
+        <div className="new-account">
+          <p>Need an account?</p>
+          <Link to='/register'>Register Here</Link>
+        </div>
       </section>
       )
     }
