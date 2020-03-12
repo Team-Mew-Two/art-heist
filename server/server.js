@@ -7,6 +7,7 @@ const PORT = 3000;
 
 const apiRouter = require('./routes/apiRouter');
 const userRouter = require('./routes/userRouter');
+const cartRouter = require('./routes/cartRouter');
 
 /**
  * handle parsing request body
@@ -25,6 +26,7 @@ app.use('/assets', express.static(path.resolve(__dirname, '../client/assets')));
 // handle routes 
 app.use('/api', apiRouter);
 app.use('/user', userRouter);
+app.use('/cart', cartRouter);
 
 // statically serve everything in the build folder on the route '/build'
 // if (process.env.NODE_ENV !== 'development') {
