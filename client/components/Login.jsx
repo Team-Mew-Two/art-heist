@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
     constructor(props) {
@@ -11,13 +11,15 @@ export default class Login extends Component {
     render() {
       return (
       <section className="login-container__login">
-        <h3>Log-In</h3>
         <form method="POST" action="/user/login">
           <input name="email" type="text" placeholder="email" />
           <input name="password" type="password" placeholder="password"/>
+          <Link className='submission' to='/'>Log In</Link>
         </form>
-        <Link className='submission' to='/'>Log In</Link>
-        <p>Need an account? <Link to='/register'>Register Here</Link></p>
+        <div className="new-account">
+          <p>Need an account?</p>
+          <Link to='/register'>Register Here</Link>
+        </div>
       </section>
       )
     }
