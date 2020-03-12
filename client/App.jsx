@@ -54,6 +54,9 @@ class App extends Component {
             <Route path="/login">
               <LoginContainer />
             </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
             <Route path="/items">
               <ItemContainer />
             </Route>
