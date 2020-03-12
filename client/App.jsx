@@ -14,6 +14,7 @@ import ItemContainer from './containers/ItemContainer.jsx';
 import HomeContainer from './containers/HomeContainer.jsx';
 import CheckoutContainer from './containers/CheckoutContainer.jsx';
 import CartContainer from './containers/CartContainer.jsx';
+import Register from './components/Register.jsx';
 
 
 const mapStateToProps = (state) => ({
@@ -48,11 +49,15 @@ class App extends Component {
       <section className="app-container">
         <Router>
           <nav className="navbar">
+            <h2>Art Heist</h2>
             <Link className="log-in-button" to="/login">Log In</Link>
           </nav>
           <Switch>
             <Route path="/login">
               <LoginContainer />
+            </Route>
+            <Route path="/register">
+              <Register />
             </Route>
             <Route path="/items">
               <ItemContainer />
