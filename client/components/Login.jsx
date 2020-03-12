@@ -25,16 +25,16 @@ class Login extends Component {
 
     loginHandleClick() {
       const email = document.getElementById('email').value;
-      const username = document.getElementById('username').value;
+      // const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
       console.log("inside login handle");
       console.log("email: ", email);
-      console.log("username: ", username);
+      // console.log("username: ", username);
       console.log("password: ", password);
 
 
-      this.props.login(email, username, password);
-      console.log("store after login click: ", this.props.store);
+      this.props.login(email, password);
+      // console.log("store after login click: ", this.props.store);
 
     }
 
@@ -42,11 +42,11 @@ class Login extends Component {
     render() {
       return (
       <section className="login-container__login">
-        <form method="POST" action="/user/login">
-          <input name="email" type="text" placeholder="email" />
-          <input name="password" type="password" placeholder="password"/>
-          <Link className='submission' to='/'>Log In</Link>
-        </form>
+        {/* <form method="POST" action="/user/login"> */}
+          <input id="email" name="email" type="text" placeholder="email" />
+          <input id="password" name="password" type="password" placeholder="password"/>
+          <Link className='submission' to='/' onClick={this.loginHandleClick}>Log In</Link>
+        {/* </form> */}
         <div className="new-account">
           <p>Need an account?</p>
           <Link to='/register'>Register Here</Link>

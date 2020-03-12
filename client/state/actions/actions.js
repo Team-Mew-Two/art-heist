@@ -23,7 +23,7 @@ export const populateItems = (itemsArray) => ({
 /* AUTHENTICATION */
 
 /* Redux thunk to compare server data with user input from login form */
-export function userLoginFetch(email, username, password) {
+export function userLoginFetch(email, password) {
   const config = {
     method: 'POST',
     headers: {
@@ -31,7 +31,6 @@ export function userLoginFetch(email, username, password) {
     }, // need to check form is coming in this format
     body: JSON.stringify({
       email,
-      username,
       password,
     }),
   };
@@ -45,7 +44,7 @@ export function userLoginFetch(email, username, password) {
         console.log("Data: ", data);
         dispatch({
           type: types.SIGN_IN,
-          payload: data.username,
+          payload: data.name,
         });
       });
 }
