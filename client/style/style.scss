@@ -41,3 +41,12 @@ body {
     margin-bottom: 15px; /* space between items */
   }
 }
+
+.rowC {
+  display: flex; 
+  flex-direction: row;
+}
+
+.description {
+  margin: 20px;
+}
