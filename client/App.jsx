@@ -21,6 +21,8 @@ import HomeContainer from './containers/HomeContainer.jsx';
 import CheckoutContainer from './containers/CheckoutContainer.jsx';
 import CartContainer from './containers/CartContainer.jsx';
 
+import NavBarButtons from './components/NavBarButtons.jsx';
+
 
 const mapStateToProps = (state) => ({
 
@@ -32,17 +34,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // fake auth for RRouter protected  Routes
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    fakeAuth.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb) {
-    fakeAuth.isAuthenticated = false;
-    setTimeout(cb, 100);
-  }
-};
 
 function AuthButton() {
   let history = useHistory();
@@ -83,7 +74,7 @@ function PrivateRoute({ children, ...rest }) {
       }
     />
   );
-}e
+}
 
 function LoginPage() {
   let history = useHistory();
@@ -121,8 +112,20 @@ class App extends Component {
       })
   }
 
-
   render() {
+
+  const fakeAuth = {
+    isAuthenticated: true,
+    authenticate(cb) {
+      fakeAuth.isAuthenticated = true;
+      setTimeout(cb, 100); // fake async
+    },
+    signout(cb) {
+      fakeAuth.isAuthenticated = false;
+      setTimeout(cb, 100);
+    }
+  };
+
     return (
       <section className="app-container">
         <Router>
@@ -130,7 +133,9 @@ class App extends Component {
             <PrivateRoute path="/protected">
               <AuthButton />
             </PrivateRoute>
-            <Link className="log-in-button" to="/login">Log In</Link>
+            <NavBarButtons
+              authObj={ fakeAuth }
+            />
           </nav>
           <Switch>
             <Route path="/login">
