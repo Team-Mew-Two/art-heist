@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * ************************************
  *
@@ -12,13 +14,40 @@
 // import actionType constants
 import * as types from '../constants/actionTypes';
 
+/* MANIPULATING THE ITEMS AND CART */
 
 export const populateItems = (itemsArray) => ({
   type: types.POPULATE_ITEMS,
   payload: itemsArray,
 });
 
-// BELOW NEEDS TO VERIFY FUNCTIONALITY!!!
+export const selectItem = (title) => ({
+  type: types.SELECT_ITEM,
+  payload: title,
+});
+
+export function addItemToCart(userId, itemId) {
+  const config = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      userId,
+      itemId,
+    }),
+  };
+
+  return (dispatch) =>
+    fetch('/cart/addCart', config)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({
+          type: types.ADD_CART,
+          payload: data,
+        });
+      });
+}
 
 /* AUTHENTICATION */
 

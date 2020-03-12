@@ -14,6 +14,7 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   currentUser: null,
   isLogged: false,
+  userId: 0,
 };
 
 const authenReducer = (state = initialState, action) => {
