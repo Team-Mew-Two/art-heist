@@ -44,8 +44,8 @@ apiController.insertArt = (req, res, next) => {
   console.log(artWithPrice);
 
   artWithPrice.forEach(art => {
-    const {objectID, primaryImage, title, artistDisplayName, objectDate, price} = art;
-    const valuesArr = [objectID, primaryImage, title, artistDisplayName, objectDate, price];
+    const {objectID, primaryImageSmall, title, artistDisplayName, objectDate, price} = art;
+    const valuesArr = [objectID, primaryImageSmall, title, artistDisplayName, objectDate, price];
     const queryString = 'INSERT INTO items (objectID, primaryImage, title, artist, date, price) VALUES ($1, $2, $3, $4, $5, $6)'
     db.query(queryString, valuesArr, (err, response) => {
       if (err) return next({
@@ -59,5 +59,20 @@ apiController.insertArt = (req, res, next) => {
   })
   
 };
+
+apiController.getItems = (req, res, next) => {
+  const query = "SELECT * FROM items";
+  
+  db.query(query, [])
+  .then((response) => {
+    console.log("Data in items: ", response.rows);
+    res.locals.items = response.rows;
+    next();
+  })
+  .catch((err) => {
+    console.log("Error in get items: ", err);
+    next(err);
+  })
+}
 
 module.exports = apiController;
