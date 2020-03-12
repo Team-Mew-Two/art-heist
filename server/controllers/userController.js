@@ -33,6 +33,11 @@ userController.createUser = (req, res, next) => {
 
 userController.verifyUser = (req, res, next) => {
   const { email, password } = req.body;
+  const authInfo = {
+    isVerified: false,
+    name: null,
+    userID: null
+  }
   db.query('SELECT * FROM Users WHERE email = $1', [email], (error, user) => {
     if (error) {
       return next(error);
@@ -40,8 +45,7 @@ userController.verifyUser = (req, res, next) => {
 
      // check to see if the user email exists in database
   if (!user.rows[0]) {
-    res.locals.user = {};
-    return next();
+    res.json(authInfo);
   }
 
   res.locals.user = user.rows[0];
@@ -49,9 +53,12 @@ userController.verifyUser = (req, res, next) => {
     if (err) {
       return next(err);
     } else if (!response) {
-      res.send('login information incorrect');
+      res.json(authInfo);
     }
-
+    authInfo.isVerified = true;
+    authInfo.name = user.rows[0].name;
+    authInfo.userID = user.rows[0].userID;
+    res.locals.authInfo = authInfo;
     return next();
   })
   })
