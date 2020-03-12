@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as actions from '../state/actions/actions';
 
 const mapStateToProps = state => ({
   // provide pertinent state here
@@ -12,8 +13,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   // create functions that will dispatch action creators
-  addItemToCart: (userId, itemId) => 
-  dispatch(actions.addItemToCart(userId, itemId)),
+  addItemToCart: (userId, itemId) => dispatch(actions.addItemToCart(userId, itemId)),
 });
 
 export function ItemContainer (props) {

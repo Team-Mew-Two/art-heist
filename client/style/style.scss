@@ -1,7 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 body {
   margin-left: 15%;
   margin-right: 15%;
+  font-family: 'Montserrat', sans-serif;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+
+h2 {
+  font-style: italic;
+}
+
 .item-list__thumbnail {
   img {
     // border: 1px solid #ddd; /* Gray border */
@@ -29,6 +44,27 @@ body {
   // background: grey;
   margin-bottom: 30px;
   margin-bottom: 15px;
+}
+
+.login-container__login {
+  width: 40%;
+  margin: 10% auto;
+}
+
+.login-container__login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-account p {
+  margin-right: 5px;
 }
 
 @media (max-width: 800px) {

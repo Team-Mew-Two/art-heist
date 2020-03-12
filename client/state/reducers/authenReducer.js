@@ -14,6 +14,7 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   currentUser: null,
   isLogged: false,
+  userId: 0,
 };
 
 const authenReducer = (state = initialState, action) => {
@@ -22,6 +23,7 @@ const authenReducer = (state = initialState, action) => {
       if (action.payload === null) {
         return state;
       }
+      console.log('SIGN_IN action payload: ', action.payload);
       return {
         ...state,
         currentUser: action.payload,

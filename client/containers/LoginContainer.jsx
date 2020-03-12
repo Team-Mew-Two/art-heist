@@ -13,7 +13,6 @@ export default class LoginContainer extends Component {
     render() {
       return (
       <section className="login-container">
-        <h2>Test</h2>
         <Login />
       </section>
       )
