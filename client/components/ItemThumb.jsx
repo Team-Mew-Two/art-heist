@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export function ItemThumb (props) {
   return (
-    <div id={`thumb-image-${ props.imageNumber }`} className='item-list__thumbnail'>
+    <div id={`thumb-image-${ props.imageNumber }`} className='item-list__thumbnail grid-item'>
       <Link to='/items'>
         <img src={ props.primaryImage } alt={ props.title } onClick={() => props.selectItem(props.title) }></img>
       </Link>
