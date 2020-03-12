@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -40,4 +42,4 @@ class ItemList extends Component {
   }
 }
 
-export default connect(mapStateToProps)(ItemList)
+export default connect(mapStateToProps)(ItemList);

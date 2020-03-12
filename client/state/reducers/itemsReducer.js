@@ -12,11 +12,8 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  // totalMarkets: 0,
-  // totalCards: 0,
   itemsList: [],
-  // lastMarketId: 1000,
-  // newLocation: '',
+  currentItem: [],
 };
 
 // items reducer to update the store.items.itemList array on initial render of APP
@@ -34,6 +31,22 @@ const itemsReducer = (state = initialState, action) => {
       return {
         ...state,
         itemsList,
+      };
+    }
+
+    case types.SELECT_ITEM: {
+      console.log('action payload: ', action.payload);
+      const currentItem = state.itemsList.find(item => item.title === action.payload);
+      // const currentItem = state.currentItem.slice();
+      // currentItem.length = 0;
+      // const test = state.itemsList.find(item => item.title === action.payload);
+      // currentItem.push(test.primaryimage);
+      // currentItem.push(test.title);
+      console.log('selected information: ', currentItem);
+
+      return {
+        ...state,
+        currentItem,
       };
     }
 

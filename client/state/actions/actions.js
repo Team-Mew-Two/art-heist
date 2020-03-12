@@ -18,6 +18,12 @@ export const populateItems = (itemsArray) => ({
   payload: itemsArray,
 });
 
+export const selectItem = (title) => ({
+  type: types.SELECT_ITEM,
+  payload: title,
+});
+
+
 // BELOW NEEDS TO VERIFY FUNCTIONALITY!!!
 
 /* AUTHENTICATION */
