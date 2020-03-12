@@ -24,7 +24,6 @@ import Register from './components/Register.jsx';
 
 import NavBarButtons from './components/NavBarButtons.jsx';
 
-
 const mapStateToProps = (state) => ({
 
 });
@@ -49,13 +48,13 @@ const mapDispatchToProps = (dispatch) => ({
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
-function PrivateRoute(props, {children, ...rest }) {
+function PrivateRoute(props, {...rest }) {
   return (
     <Route
       {...rest}
       render={({ location }) =>
         props.authObj.isAuthenticated ? (
-          children
+          <CartContainer />
         ) : (
           <Redirect
             to={{
