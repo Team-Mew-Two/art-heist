@@ -7,7 +7,8 @@ router.post('/register', userController.createUser, (req, res) => {
 })
 
 router.post('/login', userController.verifyUser, (req, res) => {
-  res.status(200).send('login successful');
+  console.log('loginnnnnnn');
+  res.status(200).json({username: req.body.username});
 })
 
 module.exports = router;

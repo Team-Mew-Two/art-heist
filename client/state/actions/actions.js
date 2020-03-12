@@ -23,7 +23,7 @@ export const populateItems = (itemsArray) => ({
 /* AUTHENTICATION */
 
 /* Redux thunk to compare server data with user input from login form */
-export function userLoginFetch(email, password) {
+export function userLoginFetch(email, username, password) {
   const config = {
     method: 'POST',
     headers: {
@@ -31,19 +31,21 @@ export function userLoginFetch(email, password) {
     }, // need to check form is coming in this format
     body: JSON.stringify({
       email,
+      username,
       password,
     }),
   };
 
+  console.log('config: ', config);
+
   // Redux thunk to dispatch requestLogin to make an async call to our API
-  return (dispatch) =>
-  // config is passed as our option options object to be sure only certain requests will resolve
-    fetch('/user/login', config)
+  return (dispatch) => fetch('/user/login', config)
       .then((res) => res.json())
       .then((data) => {
+        console.log("Data: ", data);
         dispatch({
           type: types.SIGN_IN,
-          payload: data,
+          payload: data.username,
         });
       });
 }
@@ -65,7 +67,7 @@ export function userCreateFetch(name, email, password) {
     Redux thunk to dispatch userCreateFetch to make an async call to our API to create
     a new user in our database
   */
-  return (dispatch) => fetch('/user/register', config)
+  return fetch('/user/register', config)
     .then((res) => res.json())
     .then((data) => {
       dispatch({

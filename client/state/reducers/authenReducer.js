@@ -22,6 +22,7 @@ const authenReducer = (state = initialState, action) => {
       if (action.payload === null) {
         return state;
       }
+      console.log('SIGN_IN action payload: ', action.payload);
       return {
         ...state,
         currentUser: action.payload,

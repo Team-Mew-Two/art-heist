@@ -18,7 +18,6 @@ import reducers from './state/reducers/index';
 const store = createStore(
   reducers,
   applyMiddleware(thunk),
-  composeWithDevTools(),
 );
 
 export default store;
