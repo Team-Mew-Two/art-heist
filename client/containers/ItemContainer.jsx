@@ -12,8 +12,12 @@ const mapStateToProps = state => ({
 export function ItemContainer (props) {
     return (
       <div>
-        { console.log(props) }
-        <img src={ props.currentItem.primaryimage } alt={ props.currentItem.title } ></img>
+        <h3> { props.currentItem.title } </h3>
+        <img src={ props.currentItem.primaryimage } 
+             alt={ props.currentItem.title } ></img>
+        <h4> Artist: { props.currentItem.artist } </h4>
+        <h4> Date: { props.currentItem.date } </h4>
+        <h4> Price: ${props.currentItem.price} </h4>
       </div>
     )
 }
