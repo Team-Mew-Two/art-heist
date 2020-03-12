@@ -34,6 +34,17 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // fake auth for RRouter protected  Routes
+  const fakeAuth2 = { //
+    isAuthenticated: true,
+    authenticate(cb) {
+      fakeAuth.isAuthenticated = true;
+      setTimeout(cb, 100); // fake async
+    },
+    signout(cb) {
+      fakeAuth.isAuthenticated = false;
+      setTimeout(cb, 100);
+    }
+  };
 
 function AuthButton() {
   let history = useHistory();
@@ -61,7 +72,7 @@ function PrivateRoute({ children, ...rest }) {
     <Route
       {...rest}
       render={({ location }) =>
-        fakeAuth.isAuthenticated ? (
+        fakeAuth2.isAuthenticated ? (
           children
         ) : (
           <Redirect
@@ -130,9 +141,7 @@ class App extends Component {
       <section className="app-container">
         <Router>
           <nav className="navbar">
-            <PrivateRoute path="/protected">
-              <AuthButton />
-            </PrivateRoute>
+            <Link to="/protected">Protected</Link>
             <NavBarButtons
               authObj={ fakeAuth }
             />
@@ -144,9 +153,9 @@ class App extends Component {
             <Route path="/items">
               <ItemContainer />
             </Route>
-            <Route path="/cart">
+            <PrivateRoute path="/protected">
               <CartContainer />
-            </Route>
+            </PrivateRoute>
             <Route path="/checkout">
               <CheckoutContainer />
             </Route>
