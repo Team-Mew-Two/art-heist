@@ -20,6 +20,7 @@ import ItemContainer from './containers/ItemContainer.jsx';
 import HomeContainer from './containers/HomeContainer.jsx';
 import CheckoutContainer from './containers/CheckoutContainer.jsx';
 import CartContainer from './containers/CartContainer.jsx';
+import Register from './components/Register.jsx';
 
 import NavBarButtons from './components/NavBarButtons.jsx';
 
@@ -130,6 +131,9 @@ class App extends Component {
           <Switch>
             <Route path="/login">
               <LoginContainer />
+            </Route>
+            <Route path="/register">
+              <Register />
             </Route>
             <Route path="/items">
               <ItemContainer />

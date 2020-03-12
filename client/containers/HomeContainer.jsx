@@ -14,8 +14,7 @@ export default class HomeContainer extends Component {
   render() {
     return (
       <section className="main-container">
-        <h2>Art-Heist</h2>
-        <SearchArt />
+        {/* <SearchArt /> */}
         <ItemList />
       </section>
     );
